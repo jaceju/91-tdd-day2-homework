@@ -101,9 +101,9 @@ class DiscountCalculator
      */
     private function addUniqueBookToBooks(Book $book)
     {
-        foreach ($this->books as $index => $books) {
+        foreach ($this->books as &$books) {
             if (!array_key_exists($book->name, $books)) {
-                $this->books[$index][$book->name] = $book;
+                $books[$book->name] = $book;
                 return true;
             }
         }
