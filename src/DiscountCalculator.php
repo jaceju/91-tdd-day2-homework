@@ -22,7 +22,7 @@ class DiscountCalculator
      */
     public function calculateDiscount()
     {
-        foreach ($this->books as $books) {
+        foreach ($this->getGroupedBooks() as $books) {
             $this->calculateTotalByUniqueBooks($books);
         }
     }
@@ -108,5 +108,13 @@ class DiscountCalculator
             }
         }
         return false;
+    }
+
+    /**
+     * @return array
+     */
+    private function getGroupedBooks()
+    {
+        return $this->books;
     }
 }
