@@ -21,10 +21,7 @@ class DiscountCalculator
     public function calculateDiscount()
     {
         $books = $this->books;
-        $count = count($books);
-        $total = $this->getTotalByUniqueBooks($books);
-        $discount = $this->getDiscountByUniqueCount($count);
-        $this->total += $total * $discount;
+        $this->calculateTotalByUniqueBooks($books);
     }
 
     /**
@@ -72,5 +69,16 @@ class DiscountCalculator
             $total += $book->price;
         }
         return $total;
+    }
+
+    /**
+     * @param $books
+     */
+    private function calculateTotalByUniqueBooks($books)
+    {
+        $count = count($books);
+        $total = $this->getTotalByUniqueBooks($books);
+        $discount = $this->getDiscountByUniqueCount($count);
+        $this->total += $total * $discount;
     }
 }
