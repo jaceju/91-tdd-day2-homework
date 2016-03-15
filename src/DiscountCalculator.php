@@ -22,8 +22,8 @@ class DiscountCalculator
      */
     public function calculateDiscount()
     {
-        foreach ($this->getGroupedBooks() as $books) {
-            $this->calculateTotalByUniqueBooks($books);
+        foreach ($this->getGroupedBooks() as $uniqueBooks) {
+            $this->calculateTotalByUniqueBooks($uniqueBooks);
         }
     }
 
