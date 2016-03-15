@@ -20,12 +20,11 @@ class DiscountCalculator
      */
     public function calculateDiscount()
     {
-        foreach ($this->books as $book) {
-            $this->total += $book->price;
-        }
-        $count = count($this->books);
+        $books = $this->books;
+        $count = count($books);
+        $total = $this->getTotalByUniqueBooks($books);
         $discount = $this->getDiscountByUniqueCount($count);
-        $this->total *= $discount;
+        $this->total += $total * $discount;
     }
 
     /**
@@ -60,5 +59,18 @@ class DiscountCalculator
                 break;
         }
         return $discount;
+    }
+
+    /**
+     * @param $books
+     * @return int
+     */
+    private function getTotalByUniqueBooks($books)
+    {
+        $total = 0;
+        foreach ($books as $book) {
+            $total += $book->price;
+        }
+        return $total;
     }
 }
