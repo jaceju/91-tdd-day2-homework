@@ -12,7 +12,18 @@ class DiscountCalculator
      */
     public function addBook(Book $book)
     {
-        $this->books[] = $book;
+        if (empty($this->books)) {
+            $this->books[] = [
+                $book->name => $book,
+            ];
+        } else {
+            foreach ($this->books as $index => $books) {
+                if (array_key_exists($book->name, $books)) {
+                    $this->books[$index] = [];
+                }
+                $this->books[$index][$book->name] = $book;
+            }
+        }
     }
 
     /**
@@ -20,8 +31,9 @@ class DiscountCalculator
      */
     public function calculateDiscount()
     {
-        $books = $this->books;
-        $this->calculateTotalByUniqueBooks($books);
+        foreach ($this->books as $books) {
+            $this->calculateTotalByUniqueBooks($books);
+        }
     }
 
     /**
