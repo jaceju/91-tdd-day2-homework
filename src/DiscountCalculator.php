@@ -12,10 +12,8 @@ class DiscountCalculator
      */
     public function addBook(Book $book)
     {
-        if (empty($this->books)) {
+        if (!$this->addUniqueBookToBooks($book)) {
             $this->addFirstBook($book);
-        } else {
-            $this->addUniqueBook($book);
         }
     }
 
@@ -99,15 +97,16 @@ class DiscountCalculator
 
     /**
      * @param Book $book
+     * @return bool
      */
-    private function addUniqueBook(Book $book)
+    private function addUniqueBookToBooks(Book $book)
     {
         foreach ($this->books as $index => $books) {
-            if (array_key_exists($book->name, $books)) {
-                $index ++;
-                $this->books[$index] = [];
+            if (!array_key_exists($book->name, $books)) {
+                $this->books[$index][$book->name] = $book;
+                return true;
             }
-            $this->books[$index][$book->name] = $book;
         }
+        return false;
     }
 }
