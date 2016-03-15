@@ -23,6 +23,14 @@ class DiscountCalculator
         foreach ($this->books as $book) {
             $this->total += $book->price;
         }
+
+        switch (count($this->books)) {
+            case 2:
+                $this->total *= 0.95;
+                break;
+            default:
+                break;
+        }
     }
 
     /**
@@ -30,6 +38,6 @@ class DiscountCalculator
      */
     public function getTotal()
     {
-        return $this->total;
+        return (int) $this->total;
     }
 }
