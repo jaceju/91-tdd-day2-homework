@@ -36,11 +36,12 @@ class DiscountCalculator
     }
 
     /**
-     * @param $count
+     * @param array $books
      * @return float|int
      */
-    private function getDiscountByUniqueCount($count)
+    private function getDiscountByUniqueCount(array $books)
     {
+        $count = count($books);
         switch ($count) {
             case 2:
                 $discount = 0.95;
@@ -79,9 +80,8 @@ class DiscountCalculator
      */
     private function calculateTotalByUniqueBooks($books)
     {
-        $count = count($books);
         $total = $this->getTotalByUniqueBooks($books);
-        $discount = $this->getDiscountByUniqueCount($count);
+        $discount = $this->getDiscountByUniqueCount($books);
         $this->total += $total * $discount;
     }
 
