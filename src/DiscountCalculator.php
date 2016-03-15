@@ -4,7 +4,7 @@ namespace BookStore;
 
 class DiscountCalculator
 {
-    private $books = [];
+    private $allUniqueBooks = [];
     private $total = 0;
 
     /**
@@ -22,7 +22,7 @@ class DiscountCalculator
      */
     public function calculateDiscount()
     {
-        foreach ($this->getGroupedBooks() as $uniqueBooks) {
+        foreach ($this->getAllUniqueBooks() as $uniqueBooks) {
             $this->calculateTotalByUniqueBooks($uniqueBooks);
         }
     }
@@ -90,7 +90,7 @@ class DiscountCalculator
      */
     private function addFirstBook(Book $book)
     {
-        $this->books[] = [
+        $this->allUniqueBooks[] = [
             $book->name => $book,
         ];
     }
@@ -101,9 +101,9 @@ class DiscountCalculator
      */
     private function addBookToUniqueBooks(Book $book)
     {
-        foreach ($this->books as &$books) {
-            if (!array_key_exists($book->name, $books)) {
-                $books[$book->name] = $book;
+        foreach ($this->allUniqueBooks as &$uniqueBooks) {
+            if (!array_key_exists($book->name, $uniqueBooks)) {
+                $uniqueBooks[$book->name] = $book;
                 return true;
             }
         }
@@ -113,8 +113,8 @@ class DiscountCalculator
     /**
      * @return array
      */
-    private function getGroupedBooks()
+    private function getAllUniqueBooks()
     {
-        return $this->books;
+        return $this->allUniqueBooks;
     }
 }
