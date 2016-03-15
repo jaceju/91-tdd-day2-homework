@@ -31,6 +31,9 @@ class DiscountCalculator
             case 3:
                 $this->total *= 0.9;
                 break;
+            case 4:
+                $this->total *= 0.8;
+                break;
             default:
                 break;
         }
