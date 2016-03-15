@@ -20,4 +20,12 @@ class DiscountCalculatorSpec extends ObjectBehavior
         $this->calculateDiscount();
         $this->getTotal()->shouldBe(100);
     }
+
+    function it_add_two_different_books_and_sum_should_be_190()
+    {
+        $this->addBook(new Book('哈利波特：神秘的魔法石', 100));
+        $this->addBook(new Book('哈利波特：消失的密室', 100));
+        $this->calculateDiscount();
+        $this->getTotal()->shouldBe(190);
+    }
 }
