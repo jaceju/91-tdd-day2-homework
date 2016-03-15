@@ -12,7 +12,7 @@ class DiscountCalculator
      */
     public function addBook(Book $book)
     {
-        if (!$this->addUniqueBookToBooks($book)) {
+        if (!$this->addBookToUniqueBooks($book)) {
             $this->addFirstBook($book);
         }
     }
@@ -99,7 +99,7 @@ class DiscountCalculator
      * @param Book $book
      * @return bool
      */
-    private function addUniqueBookToBooks(Book $book)
+    private function addBookToUniqueBooks(Book $book)
     {
         foreach ($this->books as &$books) {
             if (!array_key_exists($book->name, $books)) {
