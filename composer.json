@@ -1,0 +1,16 @@
+{
+  "require": {},
+  "require-dev": {
+    "phpspec/phpspec": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "BookStore\\": "src/"
+    }
+  },
+  "scripts": {
+    "build": [
+      "NPM=`which npm` && ${NPM} prune && ${NPM} install"
+    ]
+  }
+}
