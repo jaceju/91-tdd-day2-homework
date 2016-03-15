@@ -104,6 +104,7 @@ class DiscountCalculator
     {
         foreach ($this->books as $index => $books) {
             if (array_key_exists($book->name, $books)) {
+                $index ++;
                 $this->books[$index] = [];
             }
             $this->books[$index][$book->name] = $book;
